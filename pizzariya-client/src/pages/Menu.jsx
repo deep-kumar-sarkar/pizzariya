@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import OutletList from "../components/OutletList";
 import FoodItemCard from "../components/FoodItemCard";
 import { CartContext } from "../context/CartContext";
+import API_BASE_URL from "../config/api";
 import "./Menu.css";
 
 const Menu = () => {
@@ -28,7 +29,9 @@ const Menu = () => {
     setSelectedOutlet(null);
     setMenuItems([]);
     try {
-      const res = await fetch(`http://localhost:4000/api/outlets?city=${encodeURIComponent(city)}`);
+      const res = await fetch(
+        `${API_BASE_URL}/api/outlets?city=${encodeURIComponent(city)}`
+      );
       if (!res.ok) throw new Error("Failed to fetch outlets");
       const data = await res.json();
       setOutlets(data);
@@ -43,7 +46,9 @@ const Menu = () => {
     if (!selectedOutlet) return;
     const fetchMenu = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/menu?outlet_id=${selectedOutlet.id}`);
+        const res = await fetch(
+          `${API_BASE_URL}/api/menu?outlet_id=${selectedOutlet.id}`
+        );
         if (!res.ok) throw new Error("Failed to fetch menu items");
         const data = await res.json();
         setMenuItems(data);
@@ -56,9 +61,11 @@ const Menu = () => {
   }, [selectedOutlet]);
 
   // Apply filters
-  const filteredItems = menuItems.filter(item =>
-    (!filterType || (item.is_vegetarian ? "Veg" : "Non-Veg") === filterType) &&
-    (!filterCuisine || item.cuisine_type === filterCuisine)
+  const filteredItems = menuItems.filter(
+    (item) =>
+      (!filterType ||
+        (item.is_vegetarian ? "Veg" : "Non-Veg") === filterType) &&
+      (!filterCuisine || item.cuisine_type === filterCuisine)
   );
 
   return (
@@ -89,7 +96,10 @@ const Menu = () => {
           <div className="filters">
             <label>
               Type:
-              <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+              <select
+                value={filterType}
+                onChange={(e) => setFilterType(e.target.value)}
+              >
                 <option value="">All</option>
                 <option value="Veg">Veg</option>
                 <option value="Non-Veg">Non-Veg</option>
@@ -98,7 +108,10 @@ const Menu = () => {
 
             <label>
               Cuisine:
-              <select value={filterCuisine} onChange={(e) => setFilterCuisine(e.target.value)}>
+              <select
+                value={filterCuisine}
+                onChange={(e) => setFilterCuisine(e.target.value)}
+              >
                 <option value="">All</option>
                 <option value="Indian">Indian</option>
                 <option value="Italian">Italian</option>
@@ -108,14 +121,14 @@ const Menu = () => {
 
           <div className="item-grid">
             {filteredItems.length > 0 ? (
-              filteredItems.map(item => (
+              filteredItems.map((item) => (
                 <FoodItemCard
                   key={item.id}
                   item={{
                     ...item,
                     outletId: selectedOutlet.id, // ⬅️ This is the critical addition
                     type: item.is_vegetarian ? "Veg" : "Non-Veg",
-                    cuisine: item.cuisine_type
+                    cuisine: item.cuisine_type,
                   }}
                   onAddToCart={handleAddToCart}
                 />

@@ -3,6 +3,7 @@ import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
+import API_BASE_URL from "../config/api";
 import "./Order.css";
 
 const Order = () => {
@@ -47,7 +48,7 @@ const Order = () => {
         itemsByOutlet: { [outletId]: itemsByOutlet[outletId] },
       });
 
-      const res = await fetch("http://localhost:4000/api/orders", {
+      const res = await fetch(`${API_BASE_URL}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
+import API_BASE_URL from "../config/api";
 import "./ReviewForm.css";
 
 const ReviewForm = ({ item, outletId }) => {
@@ -13,7 +14,7 @@ const ReviewForm = ({ item, outletId }) => {
   useEffect(() => {
     if (!isAuthenticated || !token) return;
 
-    fetch("http://localhost:4000/api/orders/purchased", {
+    fetch(`${API_BASE_URL}/api/orders/purchased`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -35,7 +36,7 @@ const ReviewForm = ({ item, outletId }) => {
     e.preventDefault();
     setStatus("");
     try {
-      const res = await fetch("http://localhost:4000/api/reviews", {
+      const res = await fetch(`${API_BASE_URL}/api/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

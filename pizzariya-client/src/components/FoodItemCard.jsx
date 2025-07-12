@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import API_BASE_URL from "../config/api";
 import "./FoodItemCard.css";
 
 const FoodItemCard = ({ item, onAddToCart }) => {
@@ -7,7 +8,7 @@ const FoodItemCard = ({ item, onAddToCart }) => {
 
   useEffect(() => {
     // Fetch average rating for this item (item-based, no outlet filtering)
-    fetch(`http://localhost:4000/api/reviews/average/${item.id}`)
+    fetch(`${API_BASE_URL}/api/reviews/average/${item.id}`)
       .then((res) => res.json())
       .then((data) => {
         setAvgRating(
