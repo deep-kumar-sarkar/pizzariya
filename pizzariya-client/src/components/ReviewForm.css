@@ -1,0 +1,43 @@
+.review-form {
+    margin: 16px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    background-color: #fcfcfc;
+    border-radius: 8px;
+  }
+  
+  .review-form h4 {
+    margin-bottom: 8px;
+  }
+  
+  .review-form label,
+  .review-form textarea {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .review-form select {
+    margin-left: 8px;
+  }
+  
+  .review-form textarea {
+    resize: vertical;
+    height: 80px;
+    padding: 8px;
+    font-family: sans-serif;
+  }
+  
+  .review-form button {
+    padding: 8px 14px;
+    background-color: #1d3557;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .review-form button:hover {
+    background-color: #16304c;
+  }
+  

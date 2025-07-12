@@ -1,0 +1,21 @@
+.outlet-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  
+  .outlet-button {
+    padding: 10px 20px;
+    background-color: #f77f00;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .outlet-button:hover {
+    background-color: #d65f00;
+  }
+  

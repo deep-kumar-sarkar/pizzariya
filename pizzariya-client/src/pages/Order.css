@@ -1,0 +1,34 @@
+.order-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .outlet-section {
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+
+  .empty-cart {
+    text-align: center;
+    font-style: italic;
+    margin-top: 40px;
+  }
+  
+  
+  .place-btn {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .place-btn:hover {
+    background-color: #21867a;
+  }
+  
