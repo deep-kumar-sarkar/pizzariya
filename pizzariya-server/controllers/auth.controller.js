@@ -23,10 +23,17 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("Login attempt for email:", email);
     const user = await User.findByEmail(email);
-    if (!user) return res.status(401).json({ message: "Invalid credentials" });
-
+    if (!user) {
+      console.log("User not found");
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+    console.log("User found, comparing passwords...");
+    console.log("Input password:", password);
+    console.log("Stored password hash:", user.password);
     const match = await bcrypt.compare(password, user.password);
+    console.log("Password match result:", match);
     if (!match) return res.status(401).json({ message: "Invalid credentials" });
 
     const token = jwt.sign(
